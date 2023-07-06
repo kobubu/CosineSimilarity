@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosineSimilarity", "CosineSimilarity\CosineSimilarity.csproj", "{BC57361A-6593-4D23-BE7C-F4BDC53C12BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosineSimilarityWIthExcel", "..\CosineSimilarityWithExcel\CosineSimilarityWIthExcel\CosineSimilarityWIthExcel.csproj", "{74F7E788-299F-43F6-A3AE-C179291390F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BC57361A-6593-4D23-BE7C-F4BDC53C12BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC57361A-6593-4D23-BE7C-F4BDC53C12BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC57361A-6593-4D23-BE7C-F4BDC53C12BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74F7E788-299F-43F6-A3AE-C179291390F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74F7E788-299F-43F6-A3AE-C179291390F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74F7E788-299F-43F6-A3AE-C179291390F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74F7E788-299F-43F6-A3AE-C179291390F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

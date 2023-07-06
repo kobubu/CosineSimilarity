@@ -11,6 +11,7 @@
     <PackageReference Include="F23.StringSimilarity" Version="5.1.0" />
     <PackageReference Include="JC.GPT.NET" Version="1.2.1" />
     <PackageReference Include="Microsoft.ML" Version="2.0.1" />
+    <PackageReference Include="NPOI" Version="2.6.0" />
     <PackageReference Include="NumSharp" Version="0.30.0" />
   </ItemGroup>
 

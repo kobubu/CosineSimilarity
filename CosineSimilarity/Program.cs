@@ -16,8 +16,6 @@ namespace Samples.Dynamic
 
         public static void Example()
         {
-            // Create a new ML context, for ML.NET operations. It can be used for
-            // exception tracking and logging, as well as the source of randomness.
             var mlContext = new MLContext();
 
             // Create an empty list as the dataset for TextData. The 'ApplyWordEmbedding' does
@@ -38,7 +36,7 @@ namespace Samples.Dynamic
             // avg, max].
             var textPipeline = mlContext.Transforms.Text.NormalizeText("Text")
                 .Append(mlContext.Transforms.Text.TokenizeIntoWords("Tokens", "Text"))
-                .Append(mlContext.Transforms.Text.ApplyWordEmbedding("Features", "Tokens", WordEmbeddingEstimator.PretrainedModelKind.GloVeTwitter25D));
+                .Append(mlContext.Transforms.Text.ApplyWordEmbedding("Features", "Tokens", WordEmbeddingEstimator.PretrainedModelKind.FastTextWikipedia300D));
 
             // Fit to data.
             var textTransformer = textPipeline.Fit(emptyTextDataView);
@@ -53,7 +51,7 @@ namespace Samples.Dynamic
             };
             var comparingData = new TextData()
             {
-                Text = "This is not great."
+                Text = "That sucks. I would like to buy it again."
             };
 
             var prediction = textPredictionEngine.Predict(data);
