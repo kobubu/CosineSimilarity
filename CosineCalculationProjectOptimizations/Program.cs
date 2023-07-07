@@ -24,7 +24,7 @@ namespace CosineCalculationProjectOptimizations
         {
             var mlContext = new MLContext();
 
-            var filePath = "C:\\Users\\Igor\\Desktop\\models\\наборы данных\\En_Es_Deepl_Kefir_Grim_Soul\\Kefir — Grim Soul_translation_memory_en_and_es_translation_and_es_deepl_only_text.xlsx";
+            var filePath = "C:\\Users\\Igor\\Desktop\\models\\наборы данных\\En_Es_Deepl_Kefir_Grim_Soul\\Kefir — Grim Soul_translation_memory_en_and_belka_translation_memory_only_text.xlsx";
             var textDataItems = LoadDataFromExcel(filePath);
 
             var emptyTextDataSamples = new TextDataItem[textDataItems.Length];
@@ -40,7 +40,9 @@ namespace CosineCalculationProjectOptimizations
 
             var stopwatchCalculationVectorization = new Stopwatch();
             stopwatchCalculationVectorization.Start();
-            for (int i = 0; i < textDataItems.Length; i++)
+            int itemCount = textDataItems.Length;
+
+            for (int i = 0; i < itemCount; i++)
             {
                 var prediction = textPredictionEngine.Predict(textDataItems[i]);
                 if (prediction != null && prediction.Features != null)
@@ -50,21 +52,22 @@ namespace CosineCalculationProjectOptimizations
             }
             stopwatchCalculationVectorization.Stop();
 
-            var stopwatchCalculationCosineSimilarityWithStableCount = new Stopwatch();
-            stopwatchCalculationCosineSimilarityWithStableCount.Start();
+            var stopwatchCalculationCosineSimilarityWithTPL = new Stopwatch();
+            stopwatchCalculationCosineSimilarityWithTPL.Start();
 
-            int itemCount = textDataItems.Length;
-            Parallel.For(0, itemCount, i =>
-            {
+            var options = new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount };
+            Parallel.For(0, itemCount, options, i =>
+            {   
                 for (int j = i + 1; j < itemCount; j++)
                 {
                     var cosineSimilarity = CalculateCosineSimilarity(textDataItems[i].Features, textDataItems[j].Features);
                 }
             });
-            stopwatchCalculationCosineSimilarityWithStableCount.Stop();
+
+            stopwatchCalculationCosineSimilarityWithTPL.Stop();
 
             Console.WriteLine($"Elapsed time for calculation vectorization for {textDataItems.Length} strings: {stopwatchCalculationVectorization.ElapsedMilliseconds} ms.");
-            Console.WriteLine($"Elapsed time for calculation cosine similarity with const itemCount for {textDataItems.Length} strings: {stopwatchCalculationCosineSimilarityWithStableCount.ElapsedMilliseconds} ms.");
+            Console.WriteLine($"Elapsed time for calculation cosine similarity with TPL for {textDataItems.Length} strings: {stopwatchCalculationCosineSimilarityWithTPL.ElapsedMilliseconds} ms.");
             Console.WriteLine($"TextDataItem array length is {textDataItems.Length}");
         }
 
@@ -84,12 +87,8 @@ namespace CosineCalculationProjectOptimizations
                         continue;
 
                     var textA = row.GetCell(0)?.StringCellValue;
-
-                    for (int j = 1; j < row.LastCellNum; j++)
-                    {
-                        var textDataItem = new TextDataItem { Text = textA, RowNumber = i };
-                        textDataItems.Add(textDataItem);
-                    }
+                    var textDataItem = new TextDataItem { Text = textA, RowNumber = i };
+                    textDataItems.Add(textDataItem);
                 }
             }
 
@@ -131,5 +130,7 @@ namespace CosineCalculationProjectOptimizations
 
             return 0.0f;
         }
+
+       
     }
 }
