@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosineSimilarity", "CosineS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosineSimilarityWIthExcel", "..\CosineSimilarityWithExcel\CosineSimilarityWIthExcel\CosineSimilarityWIthExcel.csproj", "{74F7E788-299F-43F6-A3AE-C179291390F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosineTMSearchExample", "CosineTMSearchExample\CosineTMSearchExample.csproj", "{5AED14D4-FDE6-4F48-8482-BA18913BB728}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosineTextDataItemClassSearchExample", "CosineTMSearchExample\CosineTextDataItemClassSearchExample.csproj", "{5AED14D4-FDE6-4F48-8482-BA18913BB728}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosineTextDataItemClassSearchExampleInParallel", "CosineTextDataItemClassSearchExampleInParallel\CosineTextDataItemClassSearchExampleInParallel.csproj", "{1C2B9B1D-769F-4B0C-8174-AB6E05CF8869}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{5AED14D4-FDE6-4F48-8482-BA18913BB728}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AED14D4-FDE6-4F48-8482-BA18913BB728}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AED14D4-FDE6-4F48-8482-BA18913BB728}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C2B9B1D-769F-4B0C-8174-AB6E05CF8869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C2B9B1D-769F-4B0C-8174-AB6E05CF8869}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C2B9B1D-769F-4B0C-8174-AB6E05CF8869}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C2B9B1D-769F-4B0C-8174-AB6E05CF8869}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

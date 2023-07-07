@@ -24,8 +24,10 @@ namespace Samples.Dynamic
         {
             var mlContext = new MLContext();
 
-            var emptyTextDataSamples = new List<TextDataItem>();
+            var filePath = "C:\\Users\\Igor\\Desktop\\models\\наборы данных\\En_Es_Deepl_Kefir_Grim_Soul\\Kefir — Grim Soul_translation_memory_en_and_es_translation_and_es_deepl_only_text.xlsx";
+            var textDataItems = LoadDataFromExcel(filePath);
 
+            var emptyTextDataSamples = new TextDataItem[textDataItems.Length];
             var emptyTextDataView = mlContext.Data.LoadFromEnumerable(emptyTextDataSamples);
 
             var textPipeline = mlContext.Transforms.Text.NormalizeText("Text")
@@ -36,17 +38,14 @@ namespace Samples.Dynamic
 
             var textPredictionEngine = mlContext.Model.CreatePredictionEngine<TextDataItem, TransformedTextData>(textTransformer);
 
-            var filePath = "C:\\Users\\Igor\\Desktop\\models\\наборы данных\\En_Es_Deepl_Kefir_Grim_Soul\\Kefir — Grim Soul_translation_memory_en_and_es_translation_and_es_deepl_only_text.xlsx";
-            var textDataItems = LoadDataFromExcel(filePath);
-
             var stopwatchCalculationVectorization = new Stopwatch();
             stopwatchCalculationVectorization.Start();
-            foreach (var textDataItem in textDataItems)
+            for (int i = 0; i < textDataItems.Length; i++)
             {
-                var prediction = textPredictionEngine.Predict(textDataItem);
+                var prediction = textPredictionEngine.Predict(textDataItems[i]);
                 if (prediction != null && prediction.Features != null)
                 {
-                    textDataItem.Features = prediction.Features;
+                    textDataItems[i].Features = prediction.Features;
                 }
             }
             stopwatchCalculationVectorization.Stop();
@@ -54,21 +53,22 @@ namespace Samples.Dynamic
             var stopwatchCalculationCosineSimilarityWithStableCount = new Stopwatch();
             stopwatchCalculationCosineSimilarityWithStableCount.Start();
 
-            int itemCount = textDataItems.Count;
-            Parallel.ForEach(textDataItems, (textDataItem, state, index) =>
+            int itemCount = textDataItems.Length;
+            Parallel.For(0, itemCount, i =>
             {
-                for (int j = (int)index + 1; j < itemCount; j++)
+                for (int j = i + 1; j < itemCount; j++)
                 {
-                    var cosineSimilarity = CalculateCosineSimilarity(textDataItem.Features, textDataItems[j].Features);
+                    var cosineSimilarity = CalculateCosineSimilarity(textDataItems[i].Features, textDataItems[j].Features);
                 }
             });
             stopwatchCalculationCosineSimilarityWithStableCount.Stop();
-            Console.WriteLine($"Elapsed time for calculation vectorization for {textDataItems.Count} strings: {stopwatchCalculationVectorization.ElapsedMilliseconds} ms.");
-            Console.WriteLine($"Elapsed time for calculation cosine similarity with const itemCount for {textDataItems.Count} strings: {stopwatchCalculationCosineSimilarityWithStableCount.ElapsedMilliseconds} ms.");
-            Console.WriteLine($"TextDataItem List amount is {textDataItems.Count}");
+
+            Console.WriteLine($"Elapsed time for calculation vectorization for {textDataItems.Length} strings: {stopwatchCalculationVectorization.ElapsedMilliseconds} ms.");
+            Console.WriteLine($"Elapsed time for calculation cosine similarity with const itemCount for {textDataItems.Length} strings: {stopwatchCalculationCosineSimilarityWithStableCount.ElapsedMilliseconds} ms.");
+            Console.WriteLine($"TextDataItem array length is {textDataItems.Length}");
         }
 
-        private static List<TextDataItem> LoadDataFromExcel(string filePath)
+        private static TextDataItem[] LoadDataFromExcel(string filePath)
         {
             var textDataItems = new List<TextDataItem>();
 
@@ -92,7 +92,8 @@ namespace Samples.Dynamic
                     }
                 }
             }
-            return textDataItems;
+
+            return textDataItems.ToArray();
         }
 
         private class TextDataItem
