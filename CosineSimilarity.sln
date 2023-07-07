@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosineSimilarity", "CosineSimilarity\CosineSimilarity.csproj", "{BC57361A-6593-4D23-BE7C-F4BDC53C12BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosineSimilarity", "CosineSimilarity\CosineSimilarity.csproj", "{BC57361A-6593-4D23-BE7C-F4BDC53C12BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosineSimilarityWIthExcel", "..\CosineSimilarityWithExcel\CosineSimilarityWIthExcel\CosineSimilarityWIthExcel.csproj", "{74F7E788-299F-43F6-A3AE-C179291390F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosineSimilarityWIthExcel", "..\CosineSimilarityWithExcel\CosineSimilarityWIthExcel\CosineSimilarityWIthExcel.csproj", "{74F7E788-299F-43F6-A3AE-C179291390F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosineTMSearchExample", "CosineTMSearchExample\CosineTMSearchExample.csproj", "{5AED14D4-FDE6-4F48-8482-BA18913BB728}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{74F7E788-299F-43F6-A3AE-C179291390F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74F7E788-299F-43F6-A3AE-C179291390F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74F7E788-299F-43F6-A3AE-C179291390F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AED14D4-FDE6-4F48-8482-BA18913BB728}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AED14D4-FDE6-4F48-8482-BA18913BB728}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AED14D4-FDE6-4F48-8482-BA18913BB728}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AED14D4-FDE6-4F48-8482-BA18913BB728}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
