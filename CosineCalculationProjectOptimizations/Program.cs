@@ -24,7 +24,7 @@ namespace CosineCalculationProjectOptimizations
         {
             var mlContext = new MLContext();
 
-            var filePath = "C:\\Users\\Igor\\Desktop\\models\\наборы данных\\En_Es_Deepl_Kefir_Grim_Soul\\Kefir — Grim Soul_translation_memory_en_and_belka_translation_memory_only_text.xlsx";
+            var filePath = "C:\\Users\\Igor\\Desktop\\models\\наборы данных\\En_Es_Deepl_Kefir_Grim_Soul\\55k_strings_from_random.xlsx";
             var textDataItems = LoadDataFromExcel(filePath);
 
             var emptyTextDataSamples = new TextDataItem[textDataItems.Length];
