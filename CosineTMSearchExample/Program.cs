@@ -36,7 +36,7 @@ namespace Samples.Dynamic
 
             var textPredictionEngine = mlContext.Model.CreatePredictionEngine<TextDataItem, TransformedTextData>(textTransformer);
 
-            var filePath = "C:\\Users\\Igor\\Desktop\\models\\наборы данных\\En_Es_Deepl_Kefir_Grim_Soul\\Kefir — Grim Soul_translation_memory_en_and_es_translation_and_es_deepl_only_text.xlsx";
+            var filePath = "C:\\Users\\Igor\\Desktop\\models\\наборы данных\\??\\??.xlsx";
             var textDataItems = LoadDataFromExcel(filePath);
 
             var stopwatchCalculationVectorization = new Stopwatch();
